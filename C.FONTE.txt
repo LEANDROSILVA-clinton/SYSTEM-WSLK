@@ -1,0 +1,85 @@
+﻿#include <iostream>
+#include <string>
+#include <ctime>
+#include <windows.h> // para sleep
+
+using namespace std;
+
+struct Meta {
+       string descricao;
+       int hora,minuto;
+       };
+       
+void definirMeta(Meta &meta){
+     cin.ignore();
+     cout << "Descriçao da meta : exercicio cardiovascular";
+     getline(cin, meta.descricao);
+     
+     cout << "Hora definida (21): ";
+     cin >> meta.hora;
+     
+     cout <<  " Minuto definido (00): ";
+     cin >> meta.minuto;
+     cin.ignore (); 
+}
+bool verificarHorario(const Meta &meta) {
+     time_t now = time (0);
+     
+     tm *local = localtime(&now);
+     
+     return (local -> tm_hour == meta.hora && local-> tm_min == meta.minuto);
+     
+}
+
+void quiz () {
+     int resposta;
+     cout << "\nA Meta foi realizada?\n";
+     cout << " 1 - Sim\n2 - Não\nEscolha: ";
+     cin >> resposta;
+     
+     if  (resposta == 1) {
+         cout << " Parabéns ,continue assim!\n";
+         } else {
+                cin.ignore();
+                string motivo;
+                cout << "Qual foi o motivo de não ter cumprido no horário?";
+                getline(cin, motivo);
+                
+                cout << " Mas mesmo no horário diferente, foi terminado?\n";
+                cout << "1 - Sim\n2 -Não\nEscolha: ";
+                cin >> resposta;
+                
+                if (resposta == 1) {
+                cout << "Ótimo, vamos para a proxíma!\n";
+                             } else {
+                                cout << "tente novamente mais tarde.\n";
+                   }
+              } 
+        }
+        
+        int main () {
+            Meta meta;
+            definirMeta(meta);
+            
+            cout << "\nEspera do horário definido ("<<meta.hora<<":"
+            << (meta.minuto < 10? "0" : "") <<meta.minuto <<") ...\n";
+            
+            while (true) {
+                  
+                  if (verificarHorario(meta)) {
+                  
+                  cout << "\nHorário atingido! APERTE 1 PARA INICIAR AS PERGUNTAS.\n";
+                  int opcao ;
+                  cin >> opcao;
+                  
+                  if (opcao == 1)  {
+                            
+                  quiz ();
+                  break; 
+                  }
+            }
+            Sleep(30000); // TEMPO DE ESPERA DE 30 SEGUNDOS
+            }
+            
+            return 0;
+        }

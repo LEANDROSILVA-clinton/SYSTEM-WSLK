@@ -1,0 +1,6 @@
+﻿bool verificarHorario(const Meta &meta) {
+     time_t now = time (0);
+     
+     tm *local = localtime(&now);
+     
+     return (local -> tm_hour == meta.hora && local-> tm_min == meta.minuto);

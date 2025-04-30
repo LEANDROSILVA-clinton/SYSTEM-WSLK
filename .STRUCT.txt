@@ -1,0 +1,9 @@
+﻿struct Meta {
+       string descricao;
+       int hora,minuto;
+       };
+       
+void definirMeta(Meta &meta){
+     cin.ignore();
+     cout << "Descriçao da meta : exercicio cardiovascular";
+     getline(cin, meta.descricao);

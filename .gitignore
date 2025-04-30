@@ -1,0 +1,13 @@
+﻿# Arquivos de build
+*.exe
+*.o
+*.obj
+*.dll
+
+# Arquivos do Dev-C++
+*.layout
+*.depend
+*.log
+
+# Backup
+*~
